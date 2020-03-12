@@ -35,6 +35,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 
 " To open nerdTree automatically when vim starts up
 autocmd vimenter * NERDTree
+autocmd VimEnter * wincmd w
 
 " Toggle F6 yo open and close nerdTree
 nmap <F2> :NERDTreeToggle<CR>
