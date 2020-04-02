@@ -6,8 +6,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/Users/joshualeong/bin:/Users/joshualeong/opt/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/joshualeong/opt/anaconda3/condabin:/usr/local/sbin:/Users/joshualeong/.go/bin:/usr/local/opt/go/libexec/bin
+
+# Export colorize tool
+export ZSH_COLORIZE_TOOL=chroma
+alias cat='ccat'
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/joshualeong/.oh-my-zsh"
@@ -32,6 +35,16 @@ autoload -U compinit && compinit
 #alias for lsd
 alias ls='lsd'
 alias lt='ls --tree'
+
+# alias for socks proxy
+alias bypass='docker run -p 127.0.0.1:1999:1999 -d --name proxy fruitjeus/stunnel_proxy'
+alias socks='open ~/Applications/Personal/bypass.app'
+
+# alias for ssh into univac swarm
+alias uniswarm='ssh docker_log@uni-vmsvr30012.univac.com.sg'
+
+# alias for lazy git
+alias lg='lazygit'
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -94,16 +107,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git poetry docker docker-compose z vi-mode zsh-autosuggestions)
+plugins=(git poetry docker docker-compose z vi-mode zsh-autosuggestions colorize zsh-syntax-highlighting history-substring-search kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -130,7 +139,8 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
+export TERM=xterm-256color
 
 source ~/.bash_profile
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+

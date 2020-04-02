@@ -32,6 +32,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Set preview box to close automatically for YCM
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_server_python_interpreter ='/usr/local/bin/python3'
+
 
 " To open nerdTree automatically when vim starts up
 autocmd vimenter * NERDTree
