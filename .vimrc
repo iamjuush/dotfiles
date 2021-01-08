@@ -15,6 +15,8 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'vimwiki/vimwiki'
+Plugin 'tpope/vim-commentary'
 
 
 " add all your plugins here (note older versions of Vundle
@@ -36,8 +38,8 @@ let g:ycm_server_python_interpreter ='/usr/local/bin/python3'
 
 
 " To open nerdTree automatically when vim starts up
-autocmd vimenter * NERDTree
-autocmd VimEnter * wincmd w
+" autocmd vimenter * NERDTree
+" autocmd VimEnter * wincmd w
 
 " Toggle F6 yo open and close nerdTree
 nmap <F2> :NERDTreeToggle<CR>

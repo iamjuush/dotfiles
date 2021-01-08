@@ -41,10 +41,20 @@ alias bypass='docker run -p 127.0.0.1:1999:1999 -d --name proxy fruitjeus/stunne
 alias socks='open ~/Applications/Personal/bypass.app'
 
 # alias for ssh into univac swarm
-alias uniswarm='ssh docker_log@uni-vmsvr30012.univac.com.sg'
+alias uniswarm10='ssh docker_log@uni-vmsvr30010.univac.com.sg'
+alias uniswarm11='ssh docker_log@uni-vmsvr30011.univac.com.sg'
+alias uniswarm12='ssh docker_log@uni-vmsvr30012.univac.com.sg'
+alias uniswarm02='ssh docker_log@uni-vmstst002.univac.com.sg'
 
 # alias for lazy git
 alias lg='lazygit'
+
+# alias for lazy docker
+alias ld='lazydocker'
+
+# alias for neovim
+alias vim='nvim'
+alias oldvim='\vim'
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -143,4 +153,7 @@ export TERM=xterm-256color
 
 source ~/.bash_profile
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
