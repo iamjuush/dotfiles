@@ -7,6 +7,7 @@ fi
 
 
 export PATH=/Users/joshualeong/bin:/Users/joshualeong/opt/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/joshualeong/opt/anaconda3/condabin:/usr/local/sbin:/Users/joshualeong/.go/bin:/usr/local/opt/go/libexec/bin
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 
 # Export colorize tool
 export ZSH_COLORIZE_TOOL=chroma
@@ -55,6 +56,12 @@ alias ld='lazydocker'
 # alias for neovim
 alias vim='nvim'
 alias oldvim='\vim'
+
+# alias for ssh-tunnel
+alias ssh-stunnel="ssh -o ProxyCommand='nc -X 5 -x 127.0.0.1:1999 %h %p'"
+
+#alias to flush dns cache
+alias cleardns="sudo killall -HUP mDNSResponder && echo macOS DNS Cache Reset"
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -129,11 +136,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -155,5 +162,29 @@ source ~/.bash_profile
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 
+# To fix cursor in zsh to not always be in block mode
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Iterm2 zsh shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export PATH="$HOME/.poetry/bin:$PATH"
